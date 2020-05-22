@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Grid from "@material-ui/core/Grid";
+import ChosenSity from "./ChosenSity";
 
 const countries = [
   { label: "Andorra", phone: "376" },
@@ -245,7 +246,7 @@ const useStyles = makeStyles({
     },
   },
   root: {
-    marginTop: 30,
+
     width: "90%",
   },
 });
@@ -253,10 +254,9 @@ const useStyles = makeStyles({
 export default function SearchForm() {
   const [value, setValue] = React.useState("");
   const [inputValue, setInputValue] = React.useState("");
-
-
-    console.log(inputValue.length)
-  const countryToFlag = (label) => {
+    
+  console.log(value)
+    const countryToFlag = (label) => {
     if (inputValue && inputValue.length >= 3) {
       return label.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0
         ? label
@@ -266,52 +266,66 @@ export default function SearchForm() {
   const classes = useStyles();
 
   return (
-    <Grid container spacing={3}>
-      <Grid
-        item
-        xs={6}
-        container
-        direction="row"
-        justify="start"
-        alignItems="center"
-      >
-        <Autocomplete
-          className={classes.root}
-          value={value}
-          open={ inputValue.length >=3 ? true : false}
-          
-          inputValue={inputValue}
-          onInputChange={(event, newInputValue) => {
-            setInputValue(newInputValue);
-          }}
-          options={countries}
-          classes={{
-            option: classes.option,
-          }}
-          noOptionsText = "нет данной страны"
-          getOptionLabel={(option) => option.label}
+    <div style={{ marginTop: 20 }}>
+        <Grid container spacing={3}>
         
-          renderOption={(option) => (
-            <React.Fragment >
-             <span 
-                onClick={() => {
-                  console.log("click");
+            <Grid
+                item
+                xs={6}
+                container
+                direction="row"
+                justify="start"
+                alignItems="start"
+            >
+                <Autocomplete
+                className={classes.root}
+                open={ inputValue.length >=3 ? true : false}
+                value={value}
+                onInputChange={(event, newInputValue) => {
+                    setInputValue(newInputValue);
                 }}
-              >
-                {countryToFlag(option.label)}
+                options={countries}
+                classes={{
+                    option: classes.option,
+                }}
+                noOptionsText = "нет данной страны"
+                getOptionLabel={(option) => option.label}
                 
-              </span>
-            </React.Fragment>
-          )}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Choose a country"
-              variant="outlined"
-            />
-          )}
-        />
-      </Grid>
-    </Grid>
+                renderOption={(option) => (
+                    <React.Fragment >
+                    <span 
+                        onClick={() => {
+                            setValue('')
+                        
+                            setInputValue('')          
+                        }}
+                    >
+                        {countryToFlag(option.label)}
+                        
+                    </span>
+                    </React.Fragment>
+                )}
+                renderInput={(params) => (
+                    <TextField
+                    {...params}
+                    label="Choose a country"
+                    variant="outlined"
+                    />
+                )}
+                />
+            </Grid>
+            <Grid
+                item
+                xs={6}
+                container
+                direction="row"
+                justify="start"
+                alignItems="start"
+            >
+                <ChosenSity value={value}/>
+            </Grid>
+    
+        </Grid>
+    </div>
   );
 }
