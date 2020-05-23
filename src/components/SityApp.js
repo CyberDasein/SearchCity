@@ -22,7 +22,7 @@ const SityApp = (props) => {
       <Grid container spacing={3}>
         <Grid
           item
-          xs={6}
+          md={6}
           container
           direction="column"
         >
@@ -34,7 +34,7 @@ const SityApp = (props) => {
         </Grid>
         <Grid
           item
-          xs={6}
+          md={6}
           container
           direction="column"
         >
