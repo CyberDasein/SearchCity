@@ -25,8 +25,6 @@ const SityApp = (props) => {
           xs={6}
           container
           direction="column"
-          justify="start"
-          alignItems="start"
         >
           <h2>Города России</h2>
           <InputSearchSity
@@ -39,8 +37,6 @@ const SityApp = (props) => {
           xs={6}
           container
           direction="column"
-          justify="start"
-          alignItems="start"
         >
           <div className={classes.sitiesWrap}>
             <h2>Выбранные города:</h2>

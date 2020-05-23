@@ -26,7 +26,6 @@ const useStyles = makeStyles({
 });
 
 const InputSearchSity = (props) => {
-  console.log(props.sities);
 
   const classes = useStyles();
   const [inputValue, setInputValue] = React.useState("");

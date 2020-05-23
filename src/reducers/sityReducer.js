@@ -25,7 +25,7 @@ export const sityReducer = (state = initialState, action) => {
       return {
         ...state,
         chosenSities: state.chosenSities.filter(
-          (sity) => sity.id != action.payload
+          (sity) => sity.id !== action.payload
         ),
       };
 
